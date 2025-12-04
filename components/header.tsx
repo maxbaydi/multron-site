@@ -233,16 +233,18 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-fit w-auto">
-                {locales.map((loc) => (
-                  <DropdownMenuItem
-                    key={loc.code}
-                    onClick={() => setLocale(loc.code)}
-                    className={cn("flex items-center gap-3 cursor-pointer min-h-[44px] touch-manipulation", locale === loc.code && "bg-secondary")}
-                  >
-                    <span className="text-lg">{loc.flag}</span>
-                    <span className="text-xs text-muted-foreground">{loc.domain}</span>
-                  </DropdownMenuItem>
-                ))}
+                {locales.map((loc) => {
+                  const domainCode = loc.domain.split(".").pop()?.toLowerCase() || ""
+                  return (
+                    <DropdownMenuItem
+                      key={loc.code}
+                      onClick={() => setLocale(loc.code)}
+                      className={cn("flex items-center justify-center cursor-pointer min-h-[44px] touch-manipulation", locale === loc.code && "bg-secondary")}
+                    >
+                      <span className="text-xs text-muted-foreground leading-none">.{domainCode}</span>
+                    </DropdownMenuItem>
+                  )
+                })}
               </DropdownMenuContent>
             </DropdownMenu>
 
