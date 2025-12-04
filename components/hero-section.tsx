@@ -27,7 +27,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Background */}
       <div className="absolute inset-0 bg-background">
         {/* Grid pattern */}
@@ -45,15 +45,15 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 xl:py-32">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Text Content */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left order-2 lg:order-1">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-primary font-medium mb-4 tracking-wider uppercase text-sm"
+              className="text-primary font-medium mb-3 sm:mb-4 tracking-wider uppercase text-xs sm:text-sm"
             >
               {t("hero.subtitle")}
             </motion.p>
@@ -62,7 +62,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-balance"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-balance"
             >
               {t("hero.title")}
             </motion.h1>
@@ -71,7 +71,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 text-pretty"
+              className="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 text-pretty"
             >
               {t("hero.description")}
             </motion.p>
@@ -80,15 +80,15 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
             >
-              <Button asChild size="lg" className="gap-2 text-base">
+              <Button asChild size="lg" className="gap-2 text-sm sm:text-base min-h-[44px] touch-manipulation">
                 <Link href="/products">
                   {t("hero.cta.catalog")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="gap-2 text-base bg-transparent">
+              <Button asChild size="lg" variant="outline" className="gap-2 text-sm sm:text-base bg-transparent min-h-[44px] touch-manipulation">
                 <Link href="#about">
                   <Play className="w-4 h-4" />
                   {t("hero.cta.about")}
@@ -101,7 +101,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8"
+              className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
             >
               {[
                 { value: "2500+", label: t("about.stat.products") },
@@ -110,8 +110,8 @@ export function HeroSection() {
                 { value: "15+", label: t("about.stat.years") },
               ].map((stat, index) => (
                 <div key={index} className="text-center lg:text-left">
-                  <div className="text-2xl lg:text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -122,11 +122,11 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative order-1 lg:order-2 mb-8 lg:mb-0"
           >
-            <div className="relative aspect-square">
+            <div className="relative aspect-square max-w-md mx-auto lg:max-w-none">
               {/* Main image container */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-card to-secondary overflow-hidden border border-border">
+              <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-card to-secondary overflow-hidden border border-border">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentImageIndex}
@@ -142,7 +142,7 @@ export function HeroSection() {
                       fill
                       className="object-cover opacity-80"
                       priority={currentImageIndex === 0}
-                      sizes="(max-width: 1024px) 0vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -150,11 +150,11 @@ export function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               </div>
 
-              {/* Floating cards */}
-              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl p-4 shadow-2xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {/* Floating cards - скрыты на очень маленьких экранах */}
+              <div className="hidden sm:block absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 bg-card border border-border rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -164,16 +164,16 @@ export function HeroSection() {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-sm font-medium">{t("features.reliability")}</div>
-                    <div className="text-xs text-muted-foreground">99.9% Uptime</div>
+                    <div className="text-xs sm:text-sm font-medium">{t("features.reliability")}</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">99.9% Uptime</div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-card border border-border rounded-2xl p-4 shadow-2xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="hidden sm:block absolute -top-4 -right-4 bg-card border border-border rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -183,8 +183,8 @@ export function HeroSection() {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-sm font-medium">{t("features.safety")}</div>
-                    <div className="text-xs text-muted-foreground">ISO 9001</div>
+                    <div className="text-xs sm:text-sm font-medium">{t("features.safety")}</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">ISO 9001</div>
                   </div>
                 </div>
               </div>
@@ -193,8 +193,8 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      {/* Scroll indicator - скрыт на мобильных */}
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 hidden sm:block">
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}

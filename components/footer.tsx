@@ -32,12 +32,12 @@ export function Footer() {
 
   return (
     <footer id="contact" className="bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-12">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link href="/" className="flex items-center mb-4">
-              <div className="relative h-6 w-auto">
+          <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2">
+            <Link href="/" className="flex items-center mb-4 touch-manipulation">
+              <div className="relative h-5 sm:h-6 w-auto">
                 <Image
                   src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
                   alt="MULTRON"
@@ -45,21 +45,22 @@ export function Footer() {
                   height={24}
                   className="object-contain h-full w-auto"
                   priority
+                  sizes="(max-width: 640px) 100px, 120px"
                 />
               </div>
             </Link>
-            <p className="text-muted-foreground text-sm mb-6 max-w-xs">{t("footer.description")}</p>
+            <p className="text-muted-foreground text-sm sm:text-base mb-6 max-w-xs">{t("footer.description")}</p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="font-semibold mb-4">{t("footer.products")}</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold mb-4 text-sm sm:text-base">{t("footer.products")}</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.products.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation min-h-[44px] flex items-center"
                   >
                     {t(link.label)}
                   </Link>
@@ -69,13 +70,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("footer.company")}</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold mb-4 text-sm sm:text-base">{t("footer.company")}</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation min-h-[44px] flex items-center"
                   >
                     {t(link.label)}
                   </Link>
@@ -84,23 +85,23 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <h4 className="font-semibold mb-4">{t("footer.contact")}</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-0.5 text-muted-foreground flex-shrink-0" />
+          <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2">
+            <h4 className="font-semibold mb-4 text-sm sm:text-base">{t("footer.contact")}</h4>
+            <ul className="space-y-2 sm:space-y-3">
+              <li className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 <a
                   href={`mailto:${t("footer.contact.email")}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation min-h-[44px] flex items-center break-all"
                 >
                   {t("footer.contact.email")}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 mt-0.5 text-muted-foreground flex-shrink-0" />
+              <li className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 <a
                   href={`tel:${t("footer.contact.phone")}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation min-h-[44px] flex items-center"
                 >
                   {t("footer.contact.phone")}
                 </a>
@@ -110,8 +111,8 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
             © {new Date().getFullYear()} MULTRON. {t("footer.rights")}
           </p>
 
@@ -126,7 +127,7 @@ export function Footer() {
                   href={`https://${loc.domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground hover:border-foreground/20 transition-all"
+                  className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground hover:border-foreground/20 transition-all touch-manipulation min-h-[44px]"
                   title={loc.domain}
                 >
                   {domainCode}

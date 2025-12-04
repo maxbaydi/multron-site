@@ -3,11 +3,10 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Menu, Globe, ChevronDown, Sun, Moon, Monitor, Check, ArrowRight, Zap, Plug, Lightbulb, Cable, Shield, Wifi, Factory, Smartphone } from "lucide-react"
+import { Menu, Globe, ChevronDown, Sun, Moon, Monitor, Check, ArrowRight, Zap, Plug, Lightbulb, Cable, Shield, Wifi, Factory, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -38,7 +37,6 @@ const iconMap: Record<string, any> = {
 export function Header() {
   const { locale, localeConfig, t, setLocale } = useLocale()
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -72,12 +70,12 @@ export function Header() {
   const topCategories = productCategories.slice(0, 6)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border safe-area-top">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="relative h-6 lg:h-8 w-auto">
+          <Link href="/" className="flex items-center min-w-0 flex-shrink-0 touch-manipulation">
+            <div className="relative h-5 sm:h-6 lg:h-8 w-auto">
               <Image
                 src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
                 alt="MULTRON"
@@ -85,6 +83,7 @@ export function Header() {
                 height={32}
                 className="object-contain h-full w-auto"
                 priority
+                sizes="(max-width: 640px) 100px, (max-width: 1024px) 120px, 120px"
               />
             </div>
           </Link>
@@ -222,41 +221,14 @@ export function Header() {
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 lg:gap-4">
-            {/* Search */}
-            <div
-              className={cn("hidden lg:flex items-center transition-all duration-300", isSearchOpen ? "w-64" : "w-10")}
-            >
-              {isSearchOpen ? (
-                <div className="relative w-full">
-                  <Input
-                    type="search"
-                    placeholder={t("nav.search")}
-                    className="w-full bg-secondary border-border pr-10"
-                    autoFocus
-                    onBlur={() => setIsSearchOpen(false)}
-                  />
-                  <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                </div>
-              ) : (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsSearchOpen(true)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <Search className="w-5 h-5" />
-                </Button>
-              )}
-            </div>
-
+          <div className="flex items-center gap-1 sm:gap-2 lg:gap-4 min-w-0">
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
-                  <Globe className="w-4 h-4" />
+                <Button variant="ghost" size="sm" className="gap-1 sm:gap-2 text-muted-foreground hover:text-foreground min-h-[44px] touch-manipulation px-2 sm:px-3">
+                  <Globe className="w-4 h-4 flex-shrink-0" />
                   <span className="hidden sm:inline text-xs font-medium">{localeConfig.code.toUpperCase()}</span>
-                  <ChevronDown className="w-3 h-3" />
+                  <ChevronDown className="w-3 h-3 hidden sm:inline flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-fit w-auto">
@@ -264,7 +236,7 @@ export function Header() {
                   <DropdownMenuItem
                     key={loc.code}
                     onClick={() => setLocale(loc.code)}
-                    className={cn("flex items-center gap-3 cursor-pointer", locale === loc.code && "bg-secondary")}
+                    className={cn("flex items-center gap-3 cursor-pointer min-h-[44px] touch-manipulation", locale === loc.code && "bg-secondary")}
                   >
                     <span className="text-lg">{loc.flag}</span>
                     <span className="text-xs text-muted-foreground">{loc.domain}</span>
@@ -279,7 +251,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground min-h-[44px] min-w-[44px] touch-manipulation"
                 >
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div
@@ -303,7 +275,7 @@ export function Header() {
                       key={themeOption.value}
                       onClick={() => setTheme(themeOption.value)}
                       className={cn(
-                        "flex items-center gap-3 cursor-pointer transition-all duration-200",
+                        "flex items-center gap-3 cursor-pointer transition-all duration-200 min-h-[44px] touch-manipulation",
                         isSelected && "bg-secondary"
                       )}
                     >
@@ -333,45 +305,36 @@ export function Header() {
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden text-muted-foreground">
+                <Button variant="ghost" size="icon" className="lg:hidden text-muted-foreground min-h-[44px] min-w-[44px] touch-manipulation">
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-80 bg-background border-border">
-                <div className="flex flex-col gap-6 mt-8">
-                  {/* Mobile Search */}
-                  <div className="relative">
-                    <Input
-                      type="search"
-                      placeholder={t("nav.search")}
-                      className="w-full bg-secondary border-border pr-10"
-                    />
-                    <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  </div>
-
+              <SheetContent side="right" className="w-80 sm:w-96 bg-background border-border">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <div className="flex flex-col gap-6 mt-8 px-4 sm:px-6">
                   {/* Mobile Navigation */}
                   <nav className="flex flex-col gap-2">
                     <Link
                       href="/#categories"
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-3 px-2 min-h-[44px] flex items-center touch-manipulation rounded-md hover:bg-accent/50"
                     >
                       {t("nav.categories")}
                     </Link>
                     <Link
                       href="/products"
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-3 px-2 min-h-[44px] flex items-center touch-manipulation rounded-md hover:bg-accent/50"
                     >
                       {t("nav.products")}
                     </Link>
                     <Link
                       href="/#about"
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-3 px-2 min-h-[44px] flex items-center touch-manipulation rounded-md hover:bg-accent/50"
                     >
                       {t("nav.about")}
                     </Link>
                     <Link
                       href="/#contact"
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-3 px-2 min-h-[44px] flex items-center touch-manipulation rounded-md hover:bg-accent/50"
                     >
                       {t("nav.contact")}
                     </Link>
@@ -379,7 +342,7 @@ export function Header() {
 
                   {/* Mobile Language */}
                   <div className="pt-4 border-t border-border">
-                    <p className="text-sm text-muted-foreground mb-3">Region</p>
+                    <p className="text-sm text-muted-foreground mb-3 px-2">Region</p>
                     <div className="grid grid-cols-2 gap-2">
                       {locales.map((loc) => (
                         <Button
@@ -387,7 +350,7 @@ export function Header() {
                           variant={locale === loc.code ? "secondary" : "ghost"}
                           size="sm"
                           onClick={() => setLocale(loc.code)}
-                          className="justify-start gap-2"
+                          className="justify-start gap-2 min-h-[44px] touch-manipulation"
                         >
                           <span>{loc.flag}</span>
                           <span className="text-xs">{loc.name}</span>
@@ -398,7 +361,7 @@ export function Header() {
 
                   {/* Mobile Theme */}
                   <div className="pt-4 border-t border-border">
-                    <p className="text-sm text-muted-foreground mb-3">Тема</p>
+                    <p className="text-sm text-muted-foreground mb-3 px-2">Тема</p>
                     <div className="grid grid-cols-1 gap-2">
                       {themes.map((themeOption) => {
                         const Icon = themeOption.icon
@@ -409,7 +372,7 @@ export function Header() {
                             variant={isSelected ? "secondary" : "ghost"}
                             size="sm"
                             onClick={() => setTheme(themeOption.value)}
-                            className="justify-start gap-3"
+                            className="justify-start gap-3 min-h-[44px] touch-manipulation"
                           >
                             <Icon className="w-4 h-4" />
                             <span className="text-sm">{themeOption.label}</span>
