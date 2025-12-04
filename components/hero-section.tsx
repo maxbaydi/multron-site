@@ -7,11 +7,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
+import { getImageSrc } from "@/lib/image-utils"
 
 const heroImages = [
-  "/hero-section/MLT-AD-HDMI-SL.png",
-  "/hero-section/MLT-CS-TAB-10.png",
-  "/hero-section/MLT-CB-3IN1-BL.png",
+  getImageSrc("/hero-section/MLT-AD-HDMI-SL.png"),
+  getImageSrc("/hero-section/MLT-CS-TAB-10.png"),
+  getImageSrc("/hero-section/MLT-CB-3IN1-BL.png"),
 ]
 
 export function HeroSection() {

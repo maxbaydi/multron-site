@@ -22,6 +22,7 @@ import { categories as productCategories, products } from "@/lib/products"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { getImageSrc } from "@/lib/image-utils"
 
 const iconMap: Record<string, any> = {
   zap: Zap,
@@ -77,7 +78,7 @@ export function Header() {
           <Link href="/" className="flex items-center min-w-0 flex-shrink-0 touch-manipulation">
             <div className="relative h-5 sm:h-6 lg:h-8 w-auto">
               <Image
-                src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
+                src={getImageSrc(mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png")}
                 alt="MULTRON"
                 width={120}
                 height={32}
@@ -151,7 +152,7 @@ export function Header() {
                           >
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
                               <Image
-                                src="/products/mix-products.png"
+                                src={getImageSrc("/products/mix-products.png")}
                                 alt={t("products.previewAlt")}
                                 fill
                                 className="object-cover"

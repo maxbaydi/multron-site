@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
+import { getImageSrc } from "@/lib/image-utils"
 
 export function ProductsSection() {
   const { locale, t } = useLocale()
@@ -33,7 +34,7 @@ export function ProductsSection() {
               <span>{t("products.title")}</span>
               <div className="relative w-32 h-5 sm:w-36 sm:h-6 lg:w-40 lg:h-7 flex-shrink-0 mb-[2px]">
                 <Image
-                  src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
+                  src={getImageSrc(mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png")}
                   alt="MULTRON"
                   fill
                   className="object-contain"
@@ -64,7 +65,7 @@ export function ProductsSection() {
             <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
               <Link href="/products" className="touch-manipulation">
                 <Image
-                  src="/products/mix-products.png"
+                  src={getImageSrc("/products/mix-products.png")}
                   alt={t("products.previewAlt")}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -78,7 +79,7 @@ export function ProductsSection() {
                   <Link href="/products" className="flex items-center gap-3 flex-1 min-w-0 touch-manipulation">
                     <div className="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex-shrink-0">
                       <Image
-                        src={mounted && resolvedTheme === "dark" ? "/icon/icon_w-on-b-bg.png" : "/icon/icon_b-on-w-bg.png"}
+                        src={getImageSrc(mounted && resolvedTheme === "dark" ? "/icon/icon_w-on-b-bg.png" : "/icon/icon_b-on-w-bg.png")}
                         alt="MULTRON"
                         fill
                         className="object-cover"

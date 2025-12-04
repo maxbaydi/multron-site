@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "convert-images": "node scripts/convert-images-to-webp.js",
+    "prebuild": "npm run convert-images",
     "build": "next build --webpack",
     "dev": "next dev",
     "lint": "eslint .",
-    "export": "next build --webpack"
+    "export": "npm run convert-images && next build --webpack"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -70,6 +72,7 @@
     "@types/react-dom": "^19",
     "baseline-browser-mapping": "^2.9.0",
     "postcss": "^8.5",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.9",
     "tw-animate-css": "1.3.3",
     "typescript": "^5"

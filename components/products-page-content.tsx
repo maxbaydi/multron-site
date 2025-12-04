@@ -4,6 +4,7 @@ import { useLocale } from "@/lib/locale-context"
 import { products } from "@/lib/products"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { getImageSrc } from "@/lib/image-utils"
 
 export function ProductsPageContent() {
   const { locale, t } = useLocale()
@@ -41,7 +42,7 @@ export function ProductsPageContent() {
               <div className="group bg-background rounded-2xl border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
                 <div className="relative aspect-square bg-secondary overflow-hidden">
                   <Image
-                    src={product.image || "/placeholder.svg"}
+                    src={product.image ? getImageSrc(product.image) : "/placeholder.svg"}
                     alt={product.name[locale] || product.name.en}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"

@@ -4,6 +4,7 @@ import { useLocale } from "@/lib/locale-context"
 import { Shield, Cpu, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { getImageSrc } from "@/lib/image-utils"
 
 export function AboutSection() {
   const { t } = useLocale()
@@ -40,7 +41,7 @@ export function AboutSection() {
           >
             <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-secondary relative">
               <Image
-                src="/multron_manufacturing.png"
+                src={getImageSrc("/multron_manufacturing.png")}
                 alt="MULTRON Manufacturing"
                 fill
                 className="object-cover"
@@ -80,7 +81,7 @@ export function AboutSection() {
             >
               <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-secondary relative">
                 <Image
-                  src="/multron_manufacturing.png"
+                  src={getImageSrc("/multron_manufacturing.png")}
                   alt="MULTRON Manufacturing"
                   fill
                   className="object-cover"

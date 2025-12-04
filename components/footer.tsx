@@ -7,6 +7,7 @@ import { Mail, Phone } from "lucide-react"
 import { useLocale } from "@/lib/locale-context"
 import { useTheme } from "next-themes"
 import { locales } from "@/lib/i18n"
+import { getImageSrc } from "@/lib/image-utils"
 
 export function Footer() {
   const { t } = useLocale()
@@ -39,7 +40,7 @@ export function Footer() {
             <Link href="/" className="flex items-center mb-4 touch-manipulation">
               <div className="relative h-5 sm:h-6 w-auto">
                 <Image
-                  src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
+                  src={getImageSrc(mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png")}
                   alt="MULTRON"
                   width={120}
                   height={24}
