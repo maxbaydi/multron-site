@@ -79,7 +79,7 @@ export function Header() {
           <Link href="/" className="flex items-center">
             <div className="relative h-6 lg:h-8 w-auto">
               <Image
-                src={resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
+                src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
                 alt="MULTRON"
                 width={120}
                 height={32}
@@ -203,19 +203,19 @@ export function Header() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/#about" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm font-medium text-muted-foreground hover:text-foreground")}>
+                  <NavigationMenuLink asChild>
+                    <Link href="/#about" className={cn(navigationMenuTriggerStyle(), "text-sm font-medium text-muted-foreground hover:text-foreground")}>
                       {t("nav.about")}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/#contact" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm font-medium text-muted-foreground hover:text-foreground")}>
+                  <NavigationMenuLink asChild>
+                    <Link href="/#contact" className={cn(navigationMenuTriggerStyle(), "text-sm font-medium text-muted-foreground hover:text-foreground")}>
                       {t("nav.contact")}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>

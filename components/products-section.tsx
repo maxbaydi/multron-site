@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useLocale } from "@/lib/locale-context"
@@ -11,6 +12,11 @@ import { useTheme } from "next-themes"
 export function ProductsSection() {
   const { locale, t } = useLocale()
   const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <section id="products" className="py-24 lg:py-32 bg-card">
@@ -22,12 +28,12 @@ export function ProductsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-3xl lg:text-4xl font-bold mb-3 flex items-end gap-3 leading-none"
+              className="text-3xl lg:text-4xl font-bold mb-3 flex items-end gap-0 leading-none"
             >
               {t("products.title")}
               <div className="relative w-40 h-7 lg:w-40 lg:h-7 flex-shrink-0 mb-[2px]">
                 <Image
-                  src={resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
+                  src={mounted && resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
                   alt="MULTRON"
                   fill
                   className="object-contain"
@@ -70,7 +76,7 @@ export function ProductsSection() {
                   <Link href="/products" className="flex items-center gap-3 flex-1">
                     <div className="relative w-12 h-12 lg:w-16 lg:h-16">
                       <Image
-                        src={resolvedTheme === "dark" ? "/icon/icon_w-on-b-bg.png" : "/icon/icon_b-on-w-bg.png"}
+                        src={mounted && resolvedTheme === "dark" ? "/icon/icon_w-on-b-bg.png" : "/icon/icon_b-on-w-bg.png"}
                         alt="MULTRON"
                         fill
                         className="object-cover"
