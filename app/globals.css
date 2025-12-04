@@ -39,7 +39,7 @@
   --sidebar-ring: oklch(0.6500 0.1800 45);
   --font-sans: var(--font-noto-sans), "Noto Sans", sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: "Geist Mono", monospace;
+  --font-mono: var(--font-geist-mono), "Geist Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;
@@ -94,7 +94,7 @@
   --sidebar-ring: oklch(0.7000 0.1900 45);
   --font-sans: var(--font-noto-sans), "Noto Sans", sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: "Geist Mono", monospace;
+  --font-mono: var(--font-geist-mono), "Geist Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;

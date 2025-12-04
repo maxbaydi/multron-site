@@ -73,4 +73,3 @@ export const notoSansSC = localFont({
   variable: "--font-noto-sans-sc",
   display: "swap",
 })
-
