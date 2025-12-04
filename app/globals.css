@@ -37,9 +37,9 @@
   --sidebar-accent-foreground: oklch(0.9800 0 0);
   --sidebar-border: oklch(0.9000 0.0100 0);
   --sidebar-ring: oklch(0.6500 0.1800 45);
-  --font-sans: Geist, sans-serif;
+  --font-sans: var(--font-noto-sans), "Noto Sans", sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: Geist Mono, monospace;
+  --font-mono: "Geist Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;
@@ -92,9 +92,9 @@
   --sidebar-accent-foreground: oklch(0.0800 0 0);
   --sidebar-border: oklch(0.2200 0 0);
   --sidebar-ring: oklch(0.7000 0.1900 45);
-  --font-sans: Geist, sans-serif;
+  --font-sans: var(--font-noto-sans), "Noto Sans", sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: Geist Mono, monospace;
+  --font-mono: "Geist Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;

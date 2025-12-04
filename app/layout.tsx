@@ -1,12 +1,10 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Geist_Mono } from "next/font/google"
 import { LocaleProvider } from "@/lib/locale-context"
 import { ThemeProvider } from "@/components/theme-provider"
+import { FontProvider } from "@/components/font-provider"
+import { notoSans, notoSansSC } from "@/lib/fonts"
 import "./globals.css"
-
-const _inter = Inter({ subsets: ["latin", "cyrillic"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "MULTRON — Technology Infrastructure Solutions",
@@ -47,10 +45,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${notoSans.variable} ${notoSansSC.variable}`}>
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LocaleProvider>{children}</LocaleProvider>
+          <LocaleProvider>
+            <FontProvider />
+            {children}
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>
