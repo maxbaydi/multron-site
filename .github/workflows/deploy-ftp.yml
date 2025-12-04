@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: multron-ftp
     
     steps:
       - name: Checkout code
