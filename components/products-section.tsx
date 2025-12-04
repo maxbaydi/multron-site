@@ -1,0 +1,102 @@
+"use client"
+
+import Link from "next/link"
+import Image from "next/image"
+import { useLocale } from "@/lib/locale-context"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
+
+export function ProductsSection() {
+  const { locale, t } = useLocale()
+  const { resolvedTheme } = useTheme()
+
+  return (
+    <section id="products" className="py-24 lg:py-32 bg-card">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-3xl lg:text-4xl font-bold mb-3 flex items-end gap-3 leading-none"
+            >
+              {t("products.title")}
+              <div className="relative w-40 h-7 lg:w-40 lg:h-7 flex-shrink-0 mb-[2px]">
+                <Image
+                  src={resolvedTheme === "dark" ? "/logo/logo_white-on-black-bg.png" : "/logo/logo_black-on-white-bg.png"}
+                  alt="MULTRON"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-muted-foreground"
+            >
+              {t("products.subtitle")}
+            </motion.p>
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="group bg-background rounded-2xl border border-border overflow-hidden hover:border-primary/50 transition-all duration-300">
+            <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
+              <Link href="/products">
+                <Image
+                  src="/products/mix-products.png"
+                  alt={t("products.previewAlt")}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  priority
+                />
+              </Link>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+                <div className="flex items-center justify-between gap-3">
+                  <Link href="/products" className="flex items-center gap-3 flex-1">
+                    <div className="relative w-12 h-12 lg:w-16 lg:h-16">
+                      <Image
+                        src={resolvedTheme === "dark" ? "/icon/icon_w-on-b-bg.png" : "/icon/icon_b-on-w-bg.png"}
+                        alt="MULTRON"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl lg:text-2xl font-bold mb-1 group-hover:text-primary transition-colors">
+                        {t("products.previewTitle")}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {t("products.previewSubtitle")}
+                      </p>
+                    </div>
+                  </Link>
+                  <Button asChild className="gap-2 w-full sm:w-auto">
+                    <Link href="/products">
+                      {t("products.viewAll")}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
